@@ -18,5 +18,5 @@ The frontend application consumes data from the API, including POST and DELETE r
 * Fix search bar on-the-fly behavior, it seens to ignore the last character typed.
 * Remove outline from like button.
 * Store JWT in browser's data, so page every refresh won't void current token.
-* Create scheduled routines on backend to continuasly retrieve data from [external API](https://financialmodelingprep.com/developer/docs/).
+* Create scheduled routines on backend to continuously retrieve data from [external API](https://financialmodelingprep.com/developer/docs/).
 
