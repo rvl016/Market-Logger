@@ -159,8 +159,8 @@ class MenuBarView extends React.Component {
                   { authToken ? '' : mouseOverIcon( 'signUpBtn',
                     AssignmentIndIcon, 'Sign up',
                     () => { this.signUpRef.current.toggleDialog() }) }
-                  { authToken ? <Typography variant = "h6" className = { 
-                    classes.title }>{ userName }</Typography> : '' }
+                 {/*  { authToken ? <Typography variant = "h6" className = { 
+                    classes.title }>{ userName }</Typography> : '' } */}
                   { authToken ? mouseOverIcon( 'signOutBtn', ExitToApp, 
                     'Sign out', () => setAuthToken( null)) : '' }
                 </div>

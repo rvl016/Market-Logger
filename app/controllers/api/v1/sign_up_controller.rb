@@ -17,7 +17,7 @@ class Api::V1::SignUpController < ApplicationController
       render json: {
         status: :not_acceptable,
         code: 406,
-        errors: @user.errors.messages
+        errors: user.errors.messages
       }, status: :not_acceptable
     end
   end
