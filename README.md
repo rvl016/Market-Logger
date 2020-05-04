@@ -9,8 +9,8 @@ The frontend application consumes data from the API, including POST and DELETE r
 * Most recent stock data is sorted by values percentage change and shown on index page
 * Users can register, log in and can like companies.
 * Simple search engine that implements vector space model, written in C++. (IPC through UNIX pipes)
-* Server side Rake tasks to retrieve stock data from [external API](https://financialmodelingprep.com/api/)
-* Authentication tokens with JWT (JSON Web Token) standard.
+* Server side Rake tasks to retrieve stock data from [external API](https://financialmodelingprep.com/developer/docs/).
+* Authentication tokens with JWT (JSON Web Token) standard. The backend will rely only on generated tokens to identify a user session.
 
 ## TODO
 * Fix the fact that many times popovers won't disappear. 
@@ -18,4 +18,5 @@ The frontend application consumes data from the API, including POST and DELETE r
 * Fix search bar on-the-fly behavior, it seens to ignore the last character typed.
 * Remove outline from like button.
 * Store JWT in browser's data, so page every refresh won't void current token.
+* Create scheduled routines on backend to continuasly retrieve data from [external API](https://financialmodelingprep.com/developer/docs/).
 
