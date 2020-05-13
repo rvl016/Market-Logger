@@ -1,51 +1,5 @@
 namespace :stock_db do
   desc "Sync database to new stock data."
-  task boot: :environment do
-    prices = HTTParty.get( 
-      "https://financialmodelingprep.com/api/v3/stock/real-time-price")
-    if prices.code == 200
-      stampId = StockTime.create!( stamp: DateTime.current()).stamp_id
-      prices["stockList"].each do |price| 
-        symbol = price["symbol"]
-        name = StockName.find_by( symbol: symbol)
-        if ! name
-          profile = HTTParty.get( 
-            "https://financialmodelingprep.com/api/v3/company/profile/" + 
-            symbol.tr( '^|#|+', ''))
-          if profile.code == 200 && profile["symbol"]
-            profile = profile["profile"]
-            moreProfile = HTTParty.get( 
-              "https://financialmodelingprep.com/api/v3/search?query=" + 
-              symbol.tr( '^|#|+', ''))
-            currency = nil
-            exchange = nil
-            location = nil
-            if moreProfile.code == 200 && moreProfile.parsed_response != []
-              currency = moreProfile.parsed_response[0]["currency"]
-              exchange = moreProfile.parsed_response[0]["exchangeShortName"]
-              location = moreProfile.parsed_response[0]["location"]
-            end
-            StockName.create!( symbol: symbol, companyName: 
-              profile["companyName"], exchange: profile["exchange"],
-              industry: profile["industry"], website: profile["website"],
-              description: profile["description"], ceo: profile["ceo"],
-              sector: profile["sector"], image: profile["image"],
-              currency: currency, exchangeShortName: exchange, 
-              location: location)
-            name = StockName.find_by( symbol: symbol)
-          else
-            puts "New Stock Price: Can't find symbol #{symbol}!"
-          end
-        end
-        if name
-          StockPrice.create!( name_id: name.id, price: price["price"], 
-            stamp_id: stampId)
-        end
-      end
-    end
-    puts "Boot Database => Server returned code #{prices.code}!"
-  end
-
   task sync_names: :environment do
     nameSym = HTTParty.get(
       "https://financialmodelingprep.com/api/v3/company/stock/list")

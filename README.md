@@ -20,3 +20,4 @@ The frontend application consumes data from the API, including POST and DELETE r
 * Store JWT in browser's data, so page every refresh won't void current token.
 * Create scheduled routines on backend to continuously retrieve data from [external API](https://financialmodelingprep.com/developer/docs/).
 
+Data provided for free by financialmodelingprep.com
